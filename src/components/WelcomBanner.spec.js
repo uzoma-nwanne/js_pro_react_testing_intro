@@ -21,4 +21,15 @@ describe('WelcomeBanner', () => {
     });
 
     // TODO: consolidate the tests above by using a truth table implementation
+    it('Tests the Header in the Welcome Banner Component with a truth table', ()=>{
+        const tests = [
+            ['Brian', false, 'Welcome, Brian'],     ['Brian', true, 'Welcome Back, Brian'],
+            [null, false, 'Welcome!'],     [null, true, 'Welcome Back!']
+        ]
+        for(test of tests){
+            let [firstName, isReturning, greeting] = test
+            render(<WelcomeBanner firstName={firstName} isReturning={isReturning}/>)
+            expect(screen.getByRole('heading')).toContainHTML(greeting)
+        }
+    })
 });
