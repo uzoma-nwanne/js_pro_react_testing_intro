@@ -26,10 +26,12 @@ describe('WelcomeBanner', () => {
             ['Brian', false, 'Welcome, Brian'],     ['Brian', true, 'Welcome Back, Brian'],
             [null, false, 'Welcome!'],     [null, true, 'Welcome Back!']
         ]
+        let count = 0
         for(test of tests){
             let [firstName, isReturning, greeting] = test
             render(<WelcomeBanner firstName={firstName} isReturning={isReturning}/>)
-            expect(screen.getByRole('heading')).toContainHTML(greeting)
+            expect(screen.getAllByRole('heading')[count]).toContainHTML(greeting)
+            count++
         }
     })
 });
